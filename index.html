@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sai Karthik Kocherlakota | Portfolio</title>
+  <!-- Preload a friendly font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#0b1020;
+      --ink-2:#1b2342;
+      --glow:#68d2ff;
+      --pop:#ff7ad9;
+      --sun:#ffcc57;
+      --lime:#93ff8d;
+      --btn:#6a5cff;
+      --white:#ffffff;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#e7ecff;line-height:1.4;overflow-x:hidden;}
+    body{
+      background:#0a0e1a;
+      position:relative;
+      min-height:100vh;
+    }
+    /* global background using uploaded Image 1 with a gentle fade to the base colour */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-2;
+      /* Underlying scenic illustration from Image 1. Slightly higher opacity ensures the scene peeks through but doesn't overwhelm the content. */
+      background:url('Image 1.jpg') center/cover no-repeat fixed;
+      opacity:0.55;
+    }
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      /* Shorter gradient: fade the artwork into the base colour fairly quickly so by the time we reach the experience section the backdrop
+         is a uniform dark blue. Adjust these stops to control where the fade happens. */
+      /* Increase darkness towards the bottom so the experience section reads more clearly. */
+      background:linear-gradient(to bottom,
+        rgba(10,14,26,0.0) 0%,
+        rgba(10,14,26,0.6) 15%,
+        rgba(10,14,26,0.85) 35%,
+        #0a0e1a 55%,
+        #0a0e1a 100%
+      );
+      pointer-events:none;
+    }
+    a{text-decoration:none;color:inherit}
+    /* layout container */
+    .wrap{max-width:1100px;margin:0 auto;padding:0 18px;}
+    header{position:sticky;top:0;z-index:30;background:rgba(10,14,26,.6);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08);}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px;}
+    .brand{
+      font-weight:800;
+      letter-spacing:.5px;
+      font-size:1.2rem;
+      /* Reduce opacity slightly so the gradient appears softly across the entire name */
+      opacity:0.9;
+    }
+    .brand span{
+      /* Apply the same gradient to the entire name for uniform colouring */
+      background:linear-gradient(90deg,var(--glow),var(--pop));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .menu a{margin-left:18px;font-weight:500;opacity:.9;transition:opacity .2s;}
+    .menu a:hover{opacity:1;}
+
+    /* hero section */
+    .hero{
+      position:relative;
+      min-height:74vh;
+      display:grid;
+      grid-template-columns:1fr;
+      align-items:center;
+      /* Reduce the bottom padding to lessen the gap before the About section */
+      padding-top:40px;
+      padding-bottom:32px;
+    }
+    .hero h1{
+      font-size:clamp(32px,5vw,56px);
+      line-height:1.1;
+      margin-bottom:16px;
+    }
+    .hero h1 .name{
+      /* Display the name in solid white instead of a gradient */
+      color:#ffffff;
+      background:none;
+    }
+    .hero p{
+      opacity:.95;
+      /* Widen the paragraph so the long tagline fits into two lines on typical screens */
+      max-width:620px;
+      margin-bottom:28px;
+    }
+    .cta{display:flex;flex-wrap:wrap;gap:14px;}
+    .btn{padding:12px 18px;border-radius:14px;font-weight:700;cursor:pointer;border:0;text-align:center;display:inline-block;}
+    .btn.primary{background:var(--btn);color:#fff;box-shadow:0 10px 25px rgba(106,92,255,.35);}
+    .btn.secondary{background:transparent;border:1.5px dashed rgba(255,255,255,.4);}  
+
+    /* sections */
+    section{padding:72px 0;}
+    .title{font-weight:800;font-size:28px;margin-bottom:16px;}
+    .muted{opacity:.85;margin-bottom:8px;max-width:700px;}
+
+    /* experience timeline */
+    .timeline{border-left:3px solid rgba(255,255,255,.09);padding-left:20px;}
+    .timeline .row{margin:20px 0;}
+    .row .role{font-weight:700;}
+    .row .co{opacity:.9;}
+    .row .when{opacity:.7;font-weight:600;}
+
+    /* contact section */
+    .contact-wrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+    #contactBtn{transform-origin:center;transition:transform .2s,filter .2s;}
+    #contactBtn.kicked{animation:hit .6s cubic-bezier(.2,.8,.3,1.3) 1;filter:drop-shadow(0 20px 30px rgba(255,122,217,.6));}
+    @keyframes hit{
+      0%{transform:scale(1) rotate(0deg)}
+      20%{transform:scale(.94) rotate(-8deg)}
+      45%{transform:scale(1.08) rotate(12deg)}
+      70%{transform:scale(.98) rotate(-6deg)}
+      100%{transform:scale(1) rotate(0deg)}
+    }
+    footer{padding:40px 0;border-top:1px solid rgba(255,255,255,.08);opacity:.85;text-align:center;font-size:.875rem;}
+
+    /* Removed moving kicker and static Goku figure styles per request */
+
+    /* responsive adjustments */
+    @media(max-width:960px){
+      .nav .menu{display:none;}
+      .hero{grid-template-columns:1fr;}
+    }
+
+    /* description lists for internships, projects and highlights */
+    .desc{
+      margin-top:6px;
+      margin-bottom:12px;
+      padding-left:20px;
+    }
+    .desc li{
+      list-style:disc;
+      margin-bottom:6px;
+    }
+    /* new grid and flip card styles for internships and projects */
+    .internships-grid, .projects-grid{
+      display:grid;
+      gap:20px;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+      margin-top:12px;
+    }
+    .flip-card{
+      background:transparent;
+      perspective:1000px;
+      width:100%;
+      min-height:180px;
+    }
+    .flip-card-inner{
+      position:relative;
+      width:100%;
+      height:100%;
+      text-align:left;
+      transition:transform 0.6s;
+      transform-style:preserve-3d;
+    }
+    .flip-card:hover .flip-card-inner{
+      transform:rotateY(180deg);
+    }
+    .flip-card-front, .flip-card-back{
+      position:absolute;
+      width:100%;
+      height:100%;
+      top:0;
+      left:0;
+      border-radius:14px;
+      padding:20px;
+      border:1px solid rgba(255,255,255,0.08);
+      background:rgba(255,255,255,0.04);
+      backface-visibility:hidden;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:8px;
+    }
+    .flip-card-front h3{
+      margin:0;
+      font-size:1.05rem;
+      font-weight:700;
+    }
+    .flip-card-front p{
+      margin:0;
+      font-size:0.85rem;
+      opacity:0.85;
+    }
+    .flip-card-back{
+      transform:rotateY(180deg);
+      overflow:auto;
+    }
+    .flip-card-back ul{
+      margin:0;
+      padding-left:18px;
+    }
+    .flip-card-back li{
+      font-size:0.82rem;
+      margin-bottom:6px;
+      list-style:disc;
+      opacity:0.88;
+    }
+
+    /* New vertical timeline style for internships */
+    .internship-timeline{
+      position:relative;
+      border-left:2px solid rgba(255,255,255,0.08);
+      padding-left:30px;
+      margin-top:12px;
+    }
+    .internship-item{
+      position:relative;
+      margin:30px 0;
+    }
+    .internship-item .icon{
+      position:absolute;
+      left:-16px;
+      top:0;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:rgba(255,255,255,0.08);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:18px;
+    }
+    .internship-item .details{
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:14px;
+      padding:18px;
+    }
+    .internship-item .details h3{
+      margin:0;
+      font-size:1rem;
+      font-weight:700;
+    }
+    .internship-item .details .co{
+      font-size:0.85rem;
+      opacity:0.8;
+      margin-top:4px;
+      margin-bottom:10px;
+    }
+    .internship-item .details ul{
+      margin:0;
+      padding-left:18px;
+    }
+    .internship-item .details li{
+      margin-bottom:6px;
+      font-size:0.82rem;
+      opacity:0.88;
+    }
+
+    /* technology icons row in footer */
+    .tech-icons{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:16px;
+      margin:20px 0 8px;
+      font-size:0.9rem;
+    }
+    .tech-icons span{
+      background:rgba(255,255,255,0.07);
+      padding:6px 10px;
+      border-radius:8px;
+      font-weight:500;
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+
+    /* highlights grid layout */
+    .highlights-grid{
+      display:grid;
+      gap:20px;
+      grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+      margin-top:20px;
+    }
+    .highlight-card{
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:14px;
+      padding:20px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .highlight-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 8px 20px rgba(0,0,0,0.4);
+    }
+    .highlight-card h3{
+      font-size:1.1rem;
+      font-weight:700;
+      margin:0;
+    }
+    .highlight-card p{
+      font-size:0.88rem;
+      line-height:1.4;
+      opacity:0.92;
+      margin:0;
+    }
+
+    /* grid layouts for interactive internship and project cards */
+    .projects-grid, .internships-grid{
+      display:grid;
+      gap:20px;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+      margin-top:20px;
+    }
+    /* flip card container */
+    .flip-card{
+      perspective:1000px;
+    }
+    .flip-card-inner{
+      position:relative;
+      width:100%;
+      height:100%;
+      transition:transform 0.8s;
+      transform-style:preserve-3d;
+    }
+    .flip-card:hover .flip-card-inner{
+      transform:rotateY(180deg);
+    }
+    .flip-card-front, .flip-card-back{
+      position:absolute;
+      inset:0;
+      border:1px solid rgba(255,255,255,0.08);
+      background:rgba(255,255,255,0.05);
+      border-radius:14px;
+      padding:20px;
+      backface-visibility:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+    .flip-card-front{
+      font-size:1.05rem;
+      font-weight:700;
+    }
+    .flip-card-back{
+      transform:rotateY(180deg);
+      font-size:0.9rem;
+      line-height:1.4;
+    }
+
+    /* Reduce the top padding of the About section to close the gap after the hero */
+    #about{
+      padding-top:40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <!-- Display the full name in a single gradient span with uniform transparency -->
+      <div class="brand"><span>Sai Karthik Kocherlakota</span></div>
+      <nav class="menu">
+        <a href="#about">About</a>
+        <a href="#exp">Experience</a>
+        <a href="#internships">Internships</a>
+        <a href="#projects">Projects</a>
+        <a href="#highlights">Highlights</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Removed moving kicker per user request -->
+
+  <section class="hero">
+    <div class="wrap">
+      <h1>Hello, I’m <span class="name">Sai Karthik Kocherlakota</span> 👋</h1>
+      <p>Software engineer who loves distributed systems, secure backends, and shipping fast with quality. I build reliable, scalable services and have fun doing it.</p>
+      <div class="cta">
+        <a class="btn primary" href="#contact">Let’s Connect</a>
+        <!-- Removed second button “See the vibe” as requested -->
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <h2 class="title">About</h2>
+      <p class="muted">With over five years designing and building scalable back‑end services using Python, Java and Rust, I care deeply about clean APIs, strong observability and CI/CD pipelines that never flake. Outside of work I love anime and anything adventurous.</p>
+    </div>
+  </section>
+
+  <section id="exp">
+    <div class="wrap">
+      <h2 class="title">Experience</h2>
+      <div class="timeline">
+        <div class="row">
+          <div class="role">Software Development Engineer</div>
+          <div class="co">Amazon Web Services • Seattle, WA</div>
+          <div class="when">Dec 2024 – Present</div>
+        </div>
+        <div class="row">
+          <div class="role">Software Developer</div>
+          <div class="co">Inteliroute Technologies • Mount Laurel, NJ</div>
+          <div class="when">Nov 2023 – Dec 2024</div>
+        </div>
+        <div class="row">
+          <div class="role">Software Developer</div>
+          <div class="co">SliQ Information Technologies Inc. • Princeton, NJ</div>
+          <div class="when">Feb 2023 – Nov 2023</div>
+        </div>
+        <div class="row">
+          <div class="role">Software Engineer</div>
+          <div class="co">Amazon • Hyderabad, IN</div>
+          <div class="when">Jul 2020 – Mar 2021</div>
+        </div>
+        <div class="row">
+          <div class="role">Jr. Software Engineer</div>
+          <div class="co">SmartRent (SightPlan) • Hyderabad, IN</div>
+          <div class="when">Aug 2019 – May 2020</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Internships section -->
+  <section id="internships">
+    <div class="wrap">
+      <h2 class="title">Internships</h2>
+      <div class="internship-timeline">
+        <div class="internship-item">
+          <div class="icon">💻</div>
+          <div class="details">
+            <h3>Web App Developer Intern</h3>
+            <p class="co">University of North Texas System • Dallas, TX, USA</p>
+            <ul>
+              <li>Built a ReactJS front‑end and C RESTful back‑end backed by MySQL, automating KNTU Radio processes and boosting efficiency by 25%.</li>
+              <li>Enhanced applications with Java and PHP while debugging and optimizing MySQL for better performance.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="internship-item">
+          <div class="icon">🤖</div>
+          <div class="details">
+            <h3>Machine Learning Intern</h3>
+            <p class="co">SmartBridge • Hyderabad, India</p>
+            <ul>
+              <li>Developed face recognition using Python, Pandas, NumPy and SVM classifiers, differentiating people and capturing gender counts.</li>
+              <li>Applied supervised and unsupervised learning techniques and gained hands‑on statistical modeling experience.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="internship-item">
+          <div class="icon">☕</div>
+          <div class="details">
+            <h3>Java Intern</h3>
+            <p class="co">Teleparadigm Networks Ltd • Hyderabad, India</p>
+            <ul>
+              <li>Designed Java/JSP UI for client rule management in SQL Server; built REST APIs on UNIX, improving rule handling efficiency.</li>
+              <li>Collaborated with stakeholders to meet business requirements and delivered client‑specific reports.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects section -->
+  <section id="projects">
+    <div class="wrap">
+      <h2 class="title">Projects</h2>
+      <div class="projects-grid">
+        <!-- Azure migration project -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <h3>Azure Migration & Optimization</h3>
+              <p>Cloud & DevOps</p>
+            </div>
+            <div class="flip-card-back">
+              <ul>
+                <li>Led on‑premise migration to Azure using Virtual Machines, VNets and Infrastructure‑as‑Code (ARM/Bicep), cutting costs by 20% and boosting scalability.</li>
+                <li>Implemented CI/CD pipelines and monitoring to ensure secure, resilient cloud deployments.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Cloud Linux optimization -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <h3>Cloud Linux Optimization</h3>
+              <p>AWS & Automation</p>
+            </div>
+            <div class="flip-card-back">
+              <ul>
+                <li>Optimized EC2 and EBS usage, leveraging Systems Manager and automation scripts to enhance reliability and reduce operational overhead.</li>
+                <li>Tuned Linux infrastructure for high‑availability services and integrated observability tools.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- GIS project -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <h3>GIS Web Systems</h3>
+              <p>ISRO • NRSC</p>
+            </div>
+            <div class="flip-card-back">
+              <ul>
+                <li>Developed Web GIS using Spatial SQL, QGIS, GeoServer and OGC web services; published remote sensing layers and improved geospatial visualisations.</li>
+                <li>Collaborated with scientists at ISRO’s NRSC to deliver accurate, interactive mapping applications.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Blockchain crowd bank -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <h3>Decentralized Crowd Banking</h3>
+              <p>Blockchain & Smart Contracts</p>
+            </div>
+            <div class="flip-card-back">
+              <ul>
+                <li>Built a peer‑to‑peer lending platform on Ethereum using Solidity smart contracts and web3.js, enabling secure digital mortgages.</li>
+                <li>Ensured transparency and data integrity with blockchain technology and decentralised authentication.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Face recognition -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <h3>Face Recognition Pipeline</h3>
+              <p>Python & AI</p>
+            </div>
+            <div class="flip-card-back">
+              <ul>
+                <li>Designed an image‑processing workflow with OpenCV and scikit‑learn; applied Support Vector Machines to classify gender and count people in crowds.</li>
+                <li>Engineered robust data ingestion and pre‑processing, enabling accurate real‑time facial analytics.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Highlights section -->
+  <section id="highlights">
+    <div class="wrap">
+      <h2 class="title">Experience Highlights & Security</h2>
+      <div class="highlights-grid">
+        <div class="highlight-card">
+          <h3>🔐 Amazon Web Services</h3>
+          <p>Scaled multi‑region key‑management using Rust & Java (JCE/PKCS#11), boosting throughput by 25% with 99.99% uptime. Built event‑driven APIs on Lambda, API Gateway & DynamoDB to automate key lifecycles and secure generative AI workloads.</p>
+        </div>
+        <div class="highlight-card">
+          <h3>🚀 Inteliroute Technologies</h3>
+          <p>Designed fault‑tolerant back‑ends in Python & Java on AWS; optimized databases and ETL pipelines. Delivered dashboards via Power BI/Tableau and integrated CI/CD & monitoring to support high‑availability services, increasing engagement by 60%.</p>
+        </div>
+        <div class="highlight-card">
+          <h3>🔧 SliQ Information Technologies</h3>
+          <p>Tuned distributed Python/Java systems, cutting incident resolution by 35%. Automated deployments using Python, Bash & Jenkins, improving SQL performance by 15% and providing real‑time observability.</p>
+        </div>
+        <div class="highlight-card">
+          <h3>📍 Amazon Last Mile Analytics</h3>
+          <p>Built geospatial analytics with Python, SQL & AWS to enhance data quality and increase coverage by 17%, while reducing logistics costs by 22%. Automated CI/CD with CodeBuild & Step Functions, slashing latency by 40%.</p>
+        </div>
+        <div class="highlight-card">
+          <h3>🏠 SmartRent Jr. Engineer</h3>
+          <p>Delivered enterprise solutions with SQL analytics & ServiceNow automation, resolving 25+ high‑impact issues and raising customer satisfaction by 45%. Implemented Agile/Jira workflows and coached teams to accelerate delivery.</p>
+        </div>
+        <div class="highlight-card">
+          <h3>🛡️ Cryptography & CloudHSM</h3>
+          <p>Implemented Java JCE and Rust PKCS#11 libraries for CloudHSM, architecting secure cryptographic services compliant with FIPS 140‑2 L3. Provided cross‑platform encryption and key attestation to secure data and generative AI models.</p>
+        </div>
+        <div class="highlight-card">
+          <h3>🌐 Security & Distributed Systems</h3>
+          <p>Designed globally distributed encryption services with HSMs, robust CI/CD and continuous monitoring. Ensured high reliability, scalability and secure data access across microservices and AI workloads.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery section removed entirely per instructions -->
+
+  <section id="contact" style="position:relative;">
+    <div class="wrap">
+      <h2 class="title">Contact</h2>
+      <p class="muted">Kick me a note anytime:</p>
+      <div class="contact-wrap">
+        <a id="contactBtn" class="btn primary" href="mailto:karthiksk7937@gmail.com">karthiksk7937@gmail.com</a>
+      </div>
+    </div>
+    <!-- Removed static Goku figure per user request -->
+  </section>
+
+  <footer>
+    <!-- Showcase core technologies with simple icons to appeal to SWE recruiters -->
+    <div class="tech-icons">
+      <span>🐍 Python</span>
+      <span>☕ Java</span>
+      <span>🦀 Rust</span>
+      <span>⚛️ React</span>
+      <span>☁️ AWS/Azure</span>
+      <span>🐳 Docker</span>
+      <span>☸️ Kubernetes</span>
+      <span>🛠️ CI/CD</span>
+      <span>🤖 AI & ML</span>
+    </div>
+    <div class="wrap">© <span id="year"></span> Sai Karthik Kocherlakota — Lets build something new!</div>
+  </footer>
+
+  <script>
+    // set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // kicker functionality removed
+  </script>
+</body>
+</html>
