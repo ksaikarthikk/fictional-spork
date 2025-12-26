@@ -113,7 +113,84 @@
 
     /* experience timeline */
     .timeline{border-left:3px solid rgba(255,255,255,.09);padding-left:20px;}
-    .timeline .row{margin:20px 0;}
+    .timeline .row{
+      margin:20px 0;
+    }
+    /* subrole styling: denote a secondary role at the same company. A slight
+       indent visually groups the intern role beneath the primary role. */
+    .timeline .subrole{
+      margin-top:4px;
+      margin-bottom:20px;
+      /* indent slightly more to accommodate the arrow graphic */
+      padding-left:24px;
+      position: relative;
+    }
+    /* draw a curved arrow connecting the primary role to the intern role.
+       The ::before pseudo‑element creates a 90‑degree bend with a rounded corner, and
+       the ::after element draws a small arrowhead at the end of the bend. */
+    .timeline .subrole::before {
+      content:"";
+      position:absolute;
+      /* position the bend so it starts from the main timeline and turns right */
+      left:-20px;
+      top:0;
+      width:20px;
+      height:24px;
+      border-left:2px solid var(--glow);
+      border-bottom:2px solid var(--glow);
+      border-bottom-left-radius:10px;
+    }
+    .timeline .subrole::after {
+      content:"";
+      position:absolute;
+      /* position the arrowhead at the end of the bend */
+      left:-10px;
+      top:20px;
+      width:8px;
+      height:8px;
+      border-left:2px solid var(--glow);
+      border-top:2px solid var(--glow);
+      transform:rotate(-45deg);
+    }
+
+    /* company-block groups multiple roles under the same organisation.
+       It uses its own border to connect grouped positions and provides
+       cleaner visual hierarchy akin to LinkedIn’s experience layout. */
+    .timeline .company-block{
+      position: relative;
+      margin: 20px 0;
+      padding-left: 20px;
+      border-left: 3px solid rgba(255,255,255,.09);
+    }
+    /* container for subordinate positions within a company. Adds an inner
+       vertical line to link each role. */
+    .timeline .company-block .positions{
+      margin-top: 12px;
+      padding-left: 20px;
+      border-left: 2px solid rgba(255,255,255,.14);
+    }
+    /* individual position within a grouped company block */
+    .timeline .company-block .positions .position{
+      position: relative;
+      margin-bottom: 10px;
+      padding-left: 18px;
+    }
+    /* draw a circular marker for each position */
+    .timeline .company-block .positions .position::before{
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: -18px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      /* use the accent colour for markers to subtly tie into the site’s palette */
+      background: var(--btn);
+    }
+    /* ensure subordinate role names align with the primary role styling */
+    .timeline .company-block .positions .position .role{
+      font-weight:700;
+    }
     .row .role{font-weight:700;}
     .row .co{opacity:.9;}
     .row .when{opacity:.7;font-weight:600;}
@@ -406,31 +483,60 @@
   <section id="exp">
     <div class="wrap">
       <h2 class="title">Experience</h2>
+      <!-- Updated professional history to reflect newest roles and locations. Dates are presented in reverse‑chronological order with the most recent at the top. -->
       <div class="timeline">
         <div class="row">
           <div class="role">Software Development Engineer</div>
-          <div class="co">Amazon Web Services • Seattle, WA</div>
-          <div class="when">Dec 2024 – Present</div>
+          <div class="co">Amazon Web Services • Seattle, WA, United States</div>
+          <div class="when">Dec&nbsp;2024 – Present</div>
         </div>
         <div class="row">
           <div class="role">Software Developer</div>
-          <div class="co">Inteliroute Technologies • Mount Laurel, NJ</div>
-          <div class="when">Nov 2023 – Dec 2024</div>
+          <div class="co">Comcast (Inteliroute Technologies) • Mount Laurel, NJ, United States</div>
+          <div class="when">Nov&nbsp;2023 – Dec&nbsp;2024</div>
         </div>
         <div class="row">
           <div class="role">Software Developer</div>
-          <div class="co">SliQ Information Technologies Inc. • Princeton, NJ</div>
-          <div class="when">Feb 2023 – Nov 2023</div>
+          <div class="co">SliQ Information Technologies Inc. • Princeton, NJ, United States</div>
+          <div class="when">Feb&nbsp;2023 – Nov&nbsp;2023</div>
+        </div>
+        <div class="row">
+          <div class="role">Web&nbsp;App Developer</div>
+          <div class="co">University of North Texas System • Dallas, TX, United States</div>
+          <div class="when">May&nbsp;2022 – Jul&nbsp;2022</div>
         </div>
         <div class="row">
           <div class="role">Software Engineer</div>
-          <div class="co">Amazon • Hyderabad, IN</div>
-          <div class="when">Jul 2020 – Mar 2021</div>
+          <div class="co">Amazon • Hyderabad, TG, India</div>
+          <div class="when">Jul&nbsp;2020 – Mar&nbsp;2021</div>
+        </div>
+        <!-- Multiple roles at the same company separated into primary row and subordinate row. 
+             The subordinate row is indented and connected via a vertical line to the primary row. -->
+        <div class="row">
+          <div class="role">Jr.&nbsp;Software Engineer</div>
+          <div class="co">SmartRent&nbsp;(SightPlan) • Hyderabad, TG, India</div>
+          <!-- Updated start date from Aug 2019 to Jan 2019 per user's request -->
+          <div class="when">Jan&nbsp;2019 – May&nbsp;2020</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education section -->
+  <section id="education">
+    <div class="wrap">
+      <h2 class="title">Education</h2>
+      <!-- Timeline reused for education to align visually with professional experience. -->
+      <div class="timeline">
+        <div class="row">
+          <div class="role">Master of Science in Computer Science</div>
+          <div class="co">University of North Texas • Denton, TX, United States</div>
+          <div class="when">Aug&nbsp;2021 – Dec&nbsp;2022 · GPA:&nbsp;3.6/4</div>
         </div>
         <div class="row">
-          <div class="role">Jr. Software Engineer</div>
-          <div class="co">SmartRent (SightPlan) • Hyderabad, IN</div>
-          <div class="when">Aug 2019 – May 2020</div>
+          <div class="role">Bachelor of Technology in Computer Science</div>
+          <div class="co">Jawaharlal Nehru Technological University • Hyderabad, TG, India</div>
+          <div class="when">Jun&nbsp;2015 – May&nbsp;2019 · GPA:&nbsp;7.5/10</div>
         </div>
       </div>
     </div>
