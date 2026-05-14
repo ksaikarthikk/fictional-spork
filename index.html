@@ -2,742 +2,1429 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Portfolio of Sai Karthik Kocherlakota, a software engineer focused on backend systems, cloud platforms, security, and distributed services." />
+  <meta property="og:title" content="Sai Karthik Kocherlakota | Software Engineer" />
+  <meta property="og:description" content="Backend, cloud, security, and distributed systems portfolio." />
+  <meta property="og:type" content="website" />
   <title>Sai Karthik Kocherlakota | Portfolio</title>
-  <!-- Preload a friendly font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
   <style>
-    :root{
-      --ink:#0b1020;
-      --ink-2:#1b2342;
-      --glow:#68d2ff;
-      --pop:#ff7ad9;
-      --sun:#ffcc57;
-      --lime:#93ff8d;
-      --btn:#6a5cff;
-      --white:#ffffff;
+    :root {
+      --bg: #050711;
+      --bg-2: #080c18;
+      --ink: #f8fbff;
+      --text: #d8e0f6;
+      --muted: #9ba8c7;
+      --line: rgba(255, 255, 255, 0.14);
+      --panel: rgba(11, 17, 32, 0.74);
+      --panel-2: rgba(18, 26, 47, 0.68);
+      --cyan: #64dfff;
+      --blue: #7d8cff;
+      --pink: #ff7bc8;
+      --mint: #8affc8;
+      --amber: #ffd166;
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.38);
+      --max: 1180px;
+      --radius: 8px;
     }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#e7ecff;line-height:1.4;overflow-x:hidden;}
-    body{
-      background:#0a0e1a;
-      position:relative;
-      min-height:100vh;
-    }
-    /* global background using uploaded Image 1 with a gentle fade to the base colour */
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      z-index:-2;
-      /* Underlying scenic illustration from Image 1. Slightly higher opacity ensures the scene peeks through but doesn't overwhelm the content. */
-      background:url('Image 1.jpg') center/cover no-repeat fixed;
-      opacity:0.55;
-    }
-    body::after{
-      content:"";
-      position:fixed;
-      inset:0;
-      z-index:-1;
-      /* Shorter gradient: fade the artwork into the base colour fairly quickly so by the time we reach the experience section the backdrop
-         is a uniform dark blue. Adjust these stops to control where the fade happens. */
-      /* Increase darkness towards the bottom so the experience section reads more clearly. */
-      background:linear-gradient(to bottom,
-        rgba(10,14,26,0.0) 0%,
-        rgba(10,14,26,0.6) 15%,
-        rgba(10,14,26,0.85) 35%,
-        #0a0e1a 55%,
-        #0a0e1a 100%
-      );
-      pointer-events:none;
-    }
-    a{text-decoration:none;color:inherit}
-    /* layout container */
-    .wrap{max-width:1100px;margin:0 auto;padding:0 18px;}
-    header{position:sticky;top:0;z-index:30;background:rgba(10,14,26,.6);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08);}
-    .nav{display:flex;align-items:center;justify-content:space-between;height:64px;}
-    .brand{
-      font-weight:800;
-      letter-spacing:.5px;
-      font-size:1.2rem;
-      /* Reduce opacity slightly so the gradient appears softly across the entire name */
-      opacity:0.9;
-    }
-    .brand span{
-      /* Apply the same gradient to the entire name for uniform colouring */
-      background:linear-gradient(90deg,var(--glow),var(--pop));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-    .menu a{margin-left:18px;font-weight:500;opacity:.9;transition:opacity .2s;}
-    .menu a:hover{opacity:1;}
 
-    /* hero section */
-    .hero{
-      position:relative;
-      min-height:74vh;
-      display:grid;
-      grid-template-columns:1fr;
-      align-items:center;
-      /* Reduce the bottom padding to lessen the gap before the About section */
-      padding-top:40px;
-      padding-bottom:32px;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    .hero h1{
-      font-size:clamp(32px,5vw,56px);
-      line-height:1.1;
-      margin-bottom:16px;
-    }
-    .hero h1 .name{
-      /* Display the name in solid white instead of a gradient */
-      color:#ffffff;
-      background:none;
-    }
-    .hero p{
-      opacity:.95;
-      /* Widen the paragraph so the long tagline fits into two lines on typical screens */
-      max-width:620px;
-      margin-bottom:28px;
-    }
-    .cta{display:flex;flex-wrap:wrap;gap:14px;}
-    .btn{padding:12px 18px;border-radius:14px;font-weight:700;cursor:pointer;border:0;text-align:center;display:inline-block;}
-    .btn.primary{background:var(--btn);color:#fff;box-shadow:0 10px 25px rgba(106,92,255,.35);}
-    .btn.secondary{background:transparent;border:1.5px dashed rgba(255,255,255,.4);}  
 
-    /* sections */
-    section{padding:72px 0;}
-    .title{font-weight:800;font-size:28px;margin-bottom:16px;}
-    .muted{opacity:.85;margin-bottom:8px;max-width:700px;}
-
-    /* experience timeline */
-    .timeline{border-left:3px solid rgba(255,255,255,.09);padding-left:20px;}
-    .timeline .row{
-      margin:20px 0;
+    html {
+      scroll-behavior: smooth;
     }
-    /* subrole styling: denote a secondary role at the same company. A slight
-       indent visually groups the intern role beneath the primary role. */
-    .timeline .subrole{
-      margin-top:4px;
-      margin-bottom:20px;
-      /* indent slightly more to accommodate the arrow graphic */
-      padding-left:24px;
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--text);
+      background: var(--bg);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      letter-spacing: 0;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    body::before {
+      z-index: 0;
+      background:
+        linear-gradient(90deg, rgba(5, 7, 17, 0.82), rgba(5, 7, 17, 0.28) 42%, rgba(5, 7, 17, 0.9)),
+        linear-gradient(180deg, rgba(5, 7, 17, 0.08), rgba(5, 7, 17, 0.94) 68%, #050711),
+        url("Image 1.jpg") center top / cover no-repeat fixed;
+      opacity: 0.96;
+      transform: scale(1.01);
+    }
+
+    body::after {
+      z-index: 0;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(120deg, rgba(100, 223, 255, 0.07), transparent 28%, rgba(255, 123, 200, 0.06) 64%, transparent);
+      background-size: 86px 86px, 86px 86px, cover;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 72%);
+    }
+
+    #starfield {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      opacity: 0.9;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .site {
       position: relative;
-    }
-    /* draw a curved arrow connecting the primary role to the intern role.
-       The ::before pseudo‑element creates a 90‑degree bend with a rounded corner, and
-       the ::after element draws a small arrowhead at the end of the bend. */
-    .timeline .subrole::before {
-      content:"";
-      position:absolute;
-      /* position the bend so it starts from the main timeline and turns right */
-      left:-20px;
-      top:0;
-      width:20px;
-      height:24px;
-      border-left:2px solid var(--glow);
-      border-bottom:2px solid var(--glow);
-      border-bottom-left-radius:10px;
-    }
-    .timeline .subrole::after {
-      content:"";
-      position:absolute;
-      /* position the arrowhead at the end of the bend */
-      left:-10px;
-      top:20px;
-      width:8px;
-      height:8px;
-      border-left:2px solid var(--glow);
-      border-top:2px solid var(--glow);
-      transform:rotate(-45deg);
+      z-index: 2;
     }
 
-    /* company-block groups multiple roles under the same organisation.
-       It uses its own border to connect grouped positions and provides
-       cleaner visual hierarchy akin to LinkedIn’s experience layout. */
-    .timeline .company-block{
+    .wrap {
+      width: min(100% - 40px, var(--max));
+      margin: 0 auto;
+    }
+
+    .skip-link {
+      position: fixed;
+      left: 16px;
+      top: 16px;
+      z-index: 100;
+      padding: 10px 14px;
+      border-radius: var(--radius);
+      background: var(--ink);
+      color: var(--bg);
+      transform: translateY(-140%);
+      transition: transform 0.2s ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(5, 7, 17, 0.72);
+      backdrop-filter: blur(18px) saturate(1.2);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      gap: 18px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      color: var(--ink);
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .navlinks {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .navlinks a {
+      padding: 9px 11px;
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 700;
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+
+    .navlinks a:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--ink);
+    }
+
+    .nav-cta {
+      border: 1px solid rgba(100, 223, 255, 0.28);
+      background: rgba(100, 223, 255, 0.1);
+      color: var(--ink) !important;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--ink);
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .menu-toggle span + span {
+      margin-top: 5px;
+    }
+
+    .menu-toggle[aria-expanded="true"] span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle[aria-expanded="true"] span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .hero {
+      min-height: calc(100svh - 72px);
+      display: grid;
+      align-items: center;
+      padding: 86px 0 64px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.55fr);
+      gap: 38px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: var(--cyan);
+      font-size: 0.79rem;
+      font-weight: 900;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 44px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--cyan), var(--pink));
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: var(--ink);
+      font-family: "Space Grotesk", Inter, sans-serif;
+      letter-spacing: 0;
+      line-height: 1.02;
+    }
+
+    h1 {
+      max-width: none;
+      font-size: clamp(2rem, 2.6vw, 2.3rem);
+      font-weight: 700;
+      text-wrap: nowrap;
+      white-space: nowrap;
+    }
+
+    .gradient-text {
+      background: linear-gradient(100deg, #ffffff, #9fefff 48%, #ffb0df);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-copy {
+      max-width: 690px;
+      margin-top: 22px;
+      color: #dfe6fb;
+      font-size: 1.14rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 18px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--ink);
+      font-weight: 900;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: rgba(100, 223, 255, 0.44);
+    }
+
+    .button.primary {
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--cyan), var(--blue) 58%, var(--pink));
+      color: #050711;
+      box-shadow: 0 20px 48px rgba(100, 223, 255, 0.24);
+    }
+
+    .button.secondary {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(16px);
+    }
+
+    .quick-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 880px;
+      margin-top: 36px;
+    }
+
+    .stat {
+      min-height: 106px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.035));
+      backdrop-filter: blur(18px);
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--ink);
+      font-family: "Space Grotesk", Inter, sans-serif;
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .hero-visual {
       position: relative;
-      margin: 20px 0;
-      padding-left: 20px;
-      border-left: 3px solid rgba(255,255,255,.09);
+      min-height: 500px;
     }
-    /* container for subordinate positions within a company. Adds an inner
-       vertical line to link each role. */
-    .timeline .company-block .positions{
-      margin-top: 12px;
-      padding-left: 20px;
-      border-left: 2px solid rgba(255,255,255,.14);
+
+    .image-panel {
+      position: absolute;
+      inset: 0 0 0 30px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: var(--radius);
+      background: #f7f7f7;
+      box-shadow: var(--shadow);
     }
-    /* individual position within a grouped company block */
-    .timeline .company-block .positions .position{
-      position: relative;
-      margin-bottom: 10px;
-      padding-left: 18px;
+
+    .image-panel::before {
+      content: none;
     }
-    /* draw a circular marker for each position */
-    .timeline .company-block .positions .position::before{
+
+    .image-panel::after {
       content: "";
       position: absolute;
-      top: 6px;
-      left: -18px;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      /* use the accent colour for markers to subtly tie into the site’s palette */
-      background: var(--btn);
-    }
-    /* ensure subordinate role names align with the primary role styling */
-    .timeline .company-block .positions .position .role{
-      font-weight:700;
-    }
-    .row .role{font-weight:700;}
-    .row .co{opacity:.9;}
-    .row .when{opacity:.7;font-weight:600;}
-
-    /* contact section */
-    .contact-wrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
-    #contactBtn{transform-origin:center;transition:transform .2s,filter .2s;}
-    #contactBtn.kicked{animation:hit .6s cubic-bezier(.2,.8,.3,1.3) 1;filter:drop-shadow(0 20px 30px rgba(255,122,217,.6));}
-    @keyframes hit{
-      0%{transform:scale(1) rotate(0deg)}
-      20%{transform:scale(.94) rotate(-8deg)}
-      45%{transform:scale(1.08) rotate(12deg)}
-      70%{transform:scale(.98) rotate(-6deg)}
-      100%{transform:scale(1) rotate(0deg)}
-    }
-    footer{padding:40px 0;border-top:1px solid rgba(255,255,255,.08);opacity:.85;text-align:center;font-size:.875rem;}
-
-    /* Removed moving kicker and static Goku figure styles per request */
-
-    /* responsive adjustments */
-    @media(max-width:960px){
-      .nav .menu{display:none;}
-      .hero{grid-template-columns:1fr;}
+      inset: 0;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: inherit;
+      background: linear-gradient(135deg, transparent, rgba(100, 223, 255, 0.08), transparent 54%, rgba(255, 123, 200, 0.08));
     }
 
-    /* description lists for internships, projects and highlights */
-    .desc{
-      margin-top:6px;
-      margin-bottom:12px;
-      padding-left:20px;
-    }
-    .desc li{
-      list-style:disc;
-      margin-bottom:6px;
-    }
-    /* new grid and flip card styles for internships and projects */
-    .internships-grid, .projects-grid{
-      display:grid;
-      gap:20px;
-      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
-      margin-top:12px;
-    }
-    .flip-card{
-      background:transparent;
-      perspective:1000px;
-      width:100%;
-      min-height:180px;
-    }
-    .flip-card-inner{
-      position:relative;
-      width:100%;
-      height:100%;
-      text-align:left;
-      transition:transform 0.6s;
-      transform-style:preserve-3d;
-    }
-    .flip-card:hover .flip-card-inner{
-      transform:rotateY(180deg);
-    }
-    .flip-card-front, .flip-card-back{
-      position:absolute;
-      width:100%;
-      height:100%;
-      top:0;
-      left:0;
-      border-radius:14px;
-      padding:20px;
-      border:1px solid rgba(255,255,255,0.08);
-      background:rgba(255,255,255,0.04);
-      backface-visibility:hidden;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      gap:8px;
-    }
-    .flip-card-front h3{
-      margin:0;
-      font-size:1.05rem;
-      font-weight:700;
-    }
-    .flip-card-front p{
-      margin:0;
-      font-size:0.85rem;
-      opacity:0.85;
-    }
-    .flip-card-back{
-      transform:rotateY(180deg);
-      overflow:auto;
-    }
-    .flip-card-back ul{
-      margin:0;
-      padding-left:18px;
-    }
-    .flip-card-back li{
-      font-size:0.82rem;
-      margin-bottom:6px;
-      list-style:disc;
-      opacity:0.88;
+    .profile-photo {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
     }
 
-    /* New vertical timeline style for internships */
-    .internship-timeline{
-      position:relative;
-      border-left:2px solid rgba(255,255,255,0.08);
-      padding-left:30px;
-      margin-top:12px;
-    }
-    .internship-item{
-      position:relative;
-      margin:30px 0;
-    }
-    .internship-item .icon{
-      position:absolute;
-      left:-16px;
-      top:0;
-      width:32px;
-      height:32px;
-      border-radius:50%;
-      background:rgba(255,255,255,0.08);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:18px;
-    }
-    .internship-item .details{
-      background:rgba(255,255,255,0.04);
-      border:1px solid rgba(255,255,255,0.08);
-      border-radius:14px;
-      padding:18px;
-    }
-    .internship-item .details h3{
-      margin:0;
-      font-size:1rem;
-      font-weight:700;
-    }
-    .internship-item .details .co{
-      font-size:0.85rem;
-      opacity:0.8;
-      margin-top:4px;
-      margin-bottom:10px;
-    }
-    .internship-item .details ul{
-      margin:0;
-      padding-left:18px;
-    }
-    .internship-item .details li{
-      margin-bottom:6px;
-      font-size:0.82rem;
-      opacity:0.88;
+    .floating-chip {
+      position: absolute;
+      right: 18px;
+      bottom: 58px;
+      max-width: 260px;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius);
+      background: rgba(9, 14, 27, 0.78);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+      color: var(--ink);
+      font-weight: 900;
     }
 
-    /* technology icons row in footer */
-    .tech-icons{
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-      gap:16px;
-      margin:20px 0 8px;
-      font-size:0.9rem;
-    }
-    .tech-icons span{
-      background:rgba(255,255,255,0.07);
-      padding:6px 10px;
-      border-radius:8px;
-      font-weight:500;
-      display:flex;
-      align-items:center;
-      gap:6px;
+    .floating-chip span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 700;
     }
 
-    /* highlights grid layout */
-    .highlights-grid{
-      display:grid;
-      gap:20px;
-      grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
-      margin-top:20px;
-    }
-    .highlight-card{
-      background:rgba(255,255,255,0.04);
-      border:1px solid rgba(255,255,255,0.08);
-      border-radius:14px;
-      padding:20px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      transition:transform .2s ease, box-shadow .2s ease;
-    }
-    .highlight-card:hover{
-      transform:translateY(-4px);
-      box-shadow:0 8px 20px rgba(0,0,0,0.4);
-    }
-    .highlight-card h3{
-      font-size:1.1rem;
-      font-weight:700;
-      margin:0;
-    }
-    .highlight-card p{
-      font-size:0.88rem;
-      line-height:1.4;
-      opacity:0.92;
-      margin:0;
+    section {
+      scroll-margin-top: 96px;
+      padding: 86px 0;
     }
 
-    /* grid layouts for interactive internship and project cards */
-    .projects-grid, .internships-grid{
-      display:grid;
-      gap:20px;
-      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
-      margin-top:20px;
-    }
-    /* flip card container */
-    .flip-card{
-      perspective:1000px;
-    }
-    .flip-card-inner{
-      position:relative;
-      width:100%;
-      height:100%;
-      transition:transform 0.8s;
-      transform-style:preserve-3d;
-    }
-    .flip-card:hover .flip-card-inner{
-      transform:rotateY(180deg);
-    }
-    .flip-card-front, .flip-card-back{
-      position:absolute;
-      inset:0;
-      border:1px solid rgba(255,255,255,0.08);
-      background:rgba(255,255,255,0.05);
-      border-radius:14px;
-      padding:20px;
-      backface-visibility:hidden;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-    }
-    .flip-card-front{
-      font-size:1.05rem;
-      font-weight:700;
-    }
-    .flip-card-back{
-      transform:rotateY(180deg);
-      font-size:0.9rem;
-      line-height:1.4;
+    .section-head {
+      max-width: 780px;
+      margin-bottom: 34px;
     }
 
-    /* Reduce the top padding of the About section to close the gap after the hero */
-    #about{
-      padding-top:40px;
+    .section-label {
+      color: var(--cyan);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .section-head h2 {
+      margin-top: 10px;
+      font-size: 2.7rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.45fr);
+      gap: 18px;
+    }
+
+    .about-card,
+    .toolbox,
+    .timeline-card,
+    .internship-card,
+    .project-card,
+    .highlight-card,
+    .education-card,
+    .contact-panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.095), rgba(255, 255, 255, 0.035));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .about-card {
+      padding: 30px;
+      color: #dfe7fb;
+      font-size: 1.05rem;
+    }
+
+    .about-card p + p {
+      margin-top: 18px;
+    }
+
+    .toolbox {
+      padding: 22px;
+    }
+
+    .toolbox h3,
+    .internship-card h3,
+    .project-card h3,
+    .highlight-card h3,
+    .education-card h3 {
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 1rem;
+      line-height: 1.35;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 16px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0 11px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.055);
+      color: #dce6ff;
+      font-size: 0.84rem;
+      font-weight: 800;
+    }
+
+    .experience-layout {
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      gap: 22px;
+      min-height: 126px;
+      padding: 22px;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .timeline-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 4px;
+      background: linear-gradient(180deg, var(--cyan), var(--pink));
+    }
+
+    .timeline-card:hover,
+    .project-card:hover,
+    .highlight-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(100, 223, 255, 0.34);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
+    }
+
+    .time {
+      color: var(--cyan);
+      font-size: 0.88rem;
+      font-weight: 900;
+    }
+
+    .timeline-card h3 {
+      color: var(--ink);
+      font-size: 1.12rem;
+      font-weight: 900;
+    }
+
+    .company {
+      margin-top: 6px;
+      color: #dce5fb;
+      font-weight: 700;
+    }
+
+    .summary {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.94rem;
+      font-weight: 600;
+    }
+
+    .project-grid,
+    .internship-grid,
+    .highlight-grid,
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .project-card,
+    .internship-card,
+    .highlight-card,
+    .education-card {
+      min-height: 230px;
+      padding: 22px;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .internship-card {
+      min-height: 318px;
+    }
+
+    .internship-card h3 {
+      color: var(--ink);
+      font-weight: 900;
+    }
+
+    .internship-company {
+      margin-top: 8px;
+      color: var(--cyan);
+      font-size: 0.9rem;
+      font-weight: 900;
+    }
+
+    .internship-card ul {
+      margin-top: 16px;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 0.94rem;
+      font-weight: 600;
+    }
+
+    .internship-card li + li {
+      margin-top: 10px;
+    }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .project-index {
+      color: var(--cyan);
+      font-family: "Space Grotesk", Inter, sans-serif;
+      font-weight: 700;
+    }
+
+    .project-card p,
+    .highlight-card p,
+    .education-card p {
+      margin-top: 14px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .tag {
+      border: 1px solid rgba(100, 223, 255, 0.16);
+      border-radius: var(--radius);
+      padding: 6px 9px;
+      color: #cbd8f6;
+      font-size: 0.76rem;
+      font-weight: 900;
+    }
+
+    .highlight-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .highlight-card {
+      min-height: 190px;
+    }
+
+    .education-card {
+      min-height: 172px;
+    }
+
+    .contact-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 20px;
+      align-items: center;
+      padding: 30px;
+      background:
+        linear-gradient(135deg, rgba(100, 223, 255, 0.13), rgba(255, 255, 255, 0.04) 42%, rgba(255, 123, 200, 0.11)),
+        rgba(8, 12, 24, 0.72);
+    }
+
+    .contact-panel h2 {
+      font-size: 2.5rem;
+    }
+
+    .contact-panel p {
+      max-width: 670px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    footer {
+      position: relative;
+      z-index: 2;
+      padding: 38px 0 46px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .tiny-links {
+      display: flex;
+      gap: 14px;
+    }
+
+    .tiny-links a {
+      color: #dce5fb;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .about-grid,
+      .contact-panel {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+      }
+
+      .hero-visual {
+        min-height: 440px;
+      }
+
+      .project-grid,
+      .internship-grid,
+      .highlight-grid,
+      .education-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .wrap {
+        width: min(100% - 28px, var(--max));
+      }
+
+      .nav {
+        min-height: 66px;
+      }
+
+      .brand {
+        max-width: 250px;
+      }
+
+      .navlinks {
+        position: fixed;
+        left: 14px;
+        right: 14px;
+        top: 76px;
+        display: none;
+        grid-template-columns: 1fr 1fr;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(5, 7, 17, 0.94);
+        box-shadow: var(--shadow);
+      }
+
+      .navlinks.open {
+        display: grid;
+      }
+
+      .navlinks a {
+        margin: 0;
+        text-align: center;
+      }
+
+      .menu-toggle {
+        display: inline-grid;
+        place-items: center;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 70px 0 46px;
+      }
+
+      h1 {
+        font-size: clamp(1.35rem, 4.6vw, 2rem);
+      }
+
+      .hero-copy {
+        font-size: 1rem;
+      }
+
+      .quick-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        min-height: 380px;
+      }
+
+      .image-panel {
+        inset: 40px 0 0 14px;
+      }
+
+      .floating-chip {
+        right: 10px;
+        bottom: 26px;
+        max-width: 230px;
+      }
+
+      section {
+        padding: 64px 0;
+      }
+
+      .section-head h2,
+      .contact-panel h2 {
+        font-size: 2.1rem;
+      }
+
+      .timeline-card {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .project-grid,
+      .internship-grid,
+      .highlight-grid,
+      .education-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 440px) {
+      .brand {
+        font-size: 0.92rem;
+      }
+
+      h1 {
+        font-size: clamp(0.92rem, 4.3vw, 1.25rem);
+      }
+
+      .actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .hero-visual {
+        min-height: 350px;
+      }
+
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="wrap nav">
-      <!-- Display the full name in a single gradient span with uniform transparency -->
-      <div class="brand"><span>Sai Karthik Kocherlakota</span></div>
-      <nav class="menu">
-        <a href="#about">About</a>
-        <a href="#exp">Experience</a>
-        <a href="#internships">Internships</a>
-        <a href="#projects">Projects</a>
-        <a href="#highlights">Highlights</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Removed moving kicker per user request -->
-
-  <section class="hero">
-    <div class="wrap">
-      <h1>Hello, I’m <span class="name">Sai Karthik Kocherlakota</span> 👋</h1>
-      <p>Software engineer who loves distributed systems, secure backends, and shipping fast with quality. I build reliable, scalable services and have fun doing it.</p>
-      <div class="cta">
-        <a class="btn primary" href="#contact">Let’s Connect</a>
-        <!-- Removed second button “See the vibe” as requested -->
+  <div class="site">
+    <header class="topbar">
+      <div class="wrap nav">
+        <a class="brand" href="#home" aria-label="Sai Karthik Kocherlakota home">
+          <span>Sai Karthik Kocherlakota</span>
+        </a>
+        <nav class="navlinks" id="navlinks" aria-label="Primary navigation">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#internships">Internships</a>
+          <a href="#projects">Projects</a>
+          <a href="#highlights">Highlights</a>
+          <a href="#education">Education</a>
+          <a class="nav-cta" href="#contact">Contact</a>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="navlinks">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </button>
       </div>
-    </div>
-  </section>
+    </header>
 
-  <section id="about">
-    <div class="wrap">
-      <h2 class="title">About</h2>
-      <p class="muted">With over five years designing and building scalable back‑end services using Python, Java and Rust, I care deeply about clean APIs, strong observability and CI/CD pipelines that never flake. Outside of work I love anime and anything adventurous.</p>
-    </div>
-  </section>
-
-  <section id="exp">
-    <div class="wrap">
-      <h2 class="title">Experience</h2>
-      <!-- Updated professional history to reflect newest roles and locations. Dates are presented in reverse‑chronological order with the most recent at the top. -->
-      <div class="timeline">
-        <div class="row">
-          <div class="role">Software Development Engineer</div>
-          <div class="co">Amazon Web Services • Seattle, WA, United States</div>
-          <div class="when">Dec&nbsp;2024 – Present</div>
-        </div>
-        <div class="row">
-          <div class="role">Software Developer</div>
-          <div class="co">Comcast (Inteliroute Technologies) • Mount Laurel, NJ, United States</div>
-          <div class="when">Nov&nbsp;2023 – Dec&nbsp;2024</div>
-        </div>
-        <div class="row">
-          <div class="role">Software Developer</div>
-          <div class="co">SliQ Information Technologies Inc. • Princeton, NJ, United States</div>
-          <div class="when">Feb&nbsp;2023 – Nov&nbsp;2023</div>
-        </div>
-        <div class="row">
-          <div class="role">Web&nbsp;App Developer</div>
-          <div class="co">University of North Texas System • Dallas, TX, United States</div>
-          <div class="when">May&nbsp;2022 – Jul&nbsp;2022</div>
-        </div>
-        <div class="row">
-          <div class="role">Software Engineer</div>
-          <div class="co">Amazon • Hyderabad, TG, India</div>
-          <div class="when">Jul&nbsp;2020 – Mar&nbsp;2021</div>
-        </div>
-        <!-- Multiple roles at the same company separated into primary row and subordinate row. 
-             The subordinate row is indented and connected via a vertical line to the primary row. -->
-        <div class="row">
-          <div class="role">Jr.&nbsp;Software Engineer</div>
-          <div class="co">SmartRent&nbsp;(SightPlan) • Hyderabad, TG, India</div>
-          <!-- Updated start date from Aug 2019 to Jan 2019 per user's request -->
-          <div class="when">Jan&nbsp;2019 – May&nbsp;2020</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Education section -->
-  <section id="education">
-    <div class="wrap">
-      <h2 class="title">Education</h2>
-      <!-- Timeline reused for education to align visually with professional experience. -->
-      <div class="timeline">
-        <div class="row">
-          <div class="role">Master of Science in Computer Science</div>
-          <div class="co">University of North Texas • Denton, TX, United States</div>
-          <div class="when">Aug&nbsp;2021 – Dec&nbsp;2022 · GPA:&nbsp;3.6/4</div>
-        </div>
-        <div class="row">
-          <div class="role">Bachelor of Technology in Computer Science</div>
-          <div class="co">Jawaharlal Nehru Technological University • Hyderabad, TG, India</div>
-          <div class="when">Jun&nbsp;2015 – May&nbsp;2019 · GPA:&nbsp;7.5/10</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Internships section -->
-  <section id="internships">
-    <div class="wrap">
-      <h2 class="title">Internships</h2>
-      <div class="internship-timeline">
-        <div class="internship-item">
-          <div class="icon">💻</div>
-          <div class="details">
-            <h3>Web App Developer Intern</h3>
-            <p class="co">University of North Texas System • Dallas, TX, USA</p>
-            <ul>
-              <li>Built a ReactJS front‑end and C RESTful back‑end backed by MySQL, automating KNTU Radio processes and boosting efficiency by 25%.</li>
-              <li>Enhanced applications with Java and PHP while debugging and optimizing MySQL for better performance.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="internship-item">
-          <div class="icon">🤖</div>
-          <div class="details">
-            <h3>Machine Learning Intern</h3>
-            <p class="co">SmartBridge • Hyderabad, India</p>
-            <ul>
-              <li>Developed face recognition using Python, Pandas, NumPy and SVM classifiers, differentiating people and capturing gender counts.</li>
-              <li>Applied supervised and unsupervised learning techniques and gained hands‑on statistical modeling experience.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="internship-item">
-          <div class="icon">☕</div>
-          <div class="details">
-            <h3>Java Intern</h3>
-            <p class="co">Teleparadigm Networks Ltd • Hyderabad, India</p>
-            <ul>
-              <li>Designed Java/JSP UI for client rule management in SQL Server; built REST APIs on UNIX, improving rule handling efficiency.</li>
-              <li>Collaborated with stakeholders to meet business requirements and delivered client‑specific reports.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects section -->
-  <section id="projects">
-    <div class="wrap">
-      <h2 class="title">Projects</h2>
-      <div class="projects-grid">
-        <!-- Azure migration project -->
-        <div class="flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <h3>Azure Migration & Optimization</h3>
-              <p>Cloud & DevOps</p>
+    <main id="main">
+      <section class="hero" id="home">
+        <div class="wrap hero-grid">
+          <div>
+            <div class="eyebrow">Backend | Distributed Systems | AI Platforms</div>
+            <h1>Hello, I am <span class="gradient-text">Sai Karthik Kocherlakota 👋</span></h1>
+            <p class="hero-copy">Software engineer with 6+ years of experience building backend platforms, distributed systems, cloud-native APIs, CI/CD automation, and AI/ML infrastructure. I like systems that scale cleanly, stay observable, and help teams ship with confidence.</p>
+            <div class="actions">
+              <a class="button primary" href="mailto:karthiksk7937@gmail.com">Start a conversation</a>
+              <a class="button secondary" href="#projects">View projects</a>
             </div>
-            <div class="flip-card-back">
+            <div class="quick-stats" aria-label="Portfolio highlights">
+              <div class="stat">
+                <strong>6+</strong>
+                <span>Years building production platforms</span>
+              </div>
+              <div class="stat">
+                <strong>99.99%</strong>
+                <span>Reliability mindset for critical services</span>
+              </div>
+              <div class="stat">
+                <strong>Cloud</strong>
+                <span>AWS, Azure, CI/CD, observability</span>
+              </div>
+              <div class="stat">
+                <strong>AI/ML</strong>
+                <span>Inference, training, optimization</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-label="Portfolio visual">
+            <div class="image-panel">
+              <img class="profile-photo" src="profile-pic.jpg" alt="Sai Karthik Kocherlakota" />
+            </div>
+            <div class="floating-chip">
+              Rust + Java + Python
+              <span>Backend platforms, APIs, AI/ML systems, cloud infrastructure.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <div class="section-label">About</div>
+              <h2>Engineer for modern software platforms.</h2>
+            </div>
+          </div>
+          <div class="about-grid">
+            <article class="about-card">
+              <p>I am a software engineer with 6+ years of experience across backend engineering, distributed systems, cloud platforms, API design, CI/CD, AI, and machine learning systems. I build services that are reliable under load, clear to operate, and designed with the kind of technical discipline modern product teams expect.</p>
+              <p>My work spans AWS and Azure platforms, cryptographic services, ML runtime optimization, data-heavy systems, geospatial analytics, and enterprise automation. I bring a practical engineering mindset: clean contracts, measurable performance, strong observability, secure defaults, and delivery pipelines that help teams move faster without sacrificing quality.</p>
+            </article>
+            <aside class="toolbox" aria-label="Core technology stack">
+              <h3>Core stack</h3>
+              <div class="chips">
+                <span class="chip">Python</span>
+                <span class="chip">Java</span>
+                <span class="chip">Rust</span>
+                <span class="chip">React</span>
+                <span class="chip">AWS</span>
+                <span class="chip">Azure</span>
+                <span class="chip">Docker</span>
+                <span class="chip">Kubernetes</span>
+                <span class="chip">SQL</span>
+                <span class="chip">CI/CD</span>
+                <span class="chip">AI/ML</span>
+                <span class="chip">C++</span>
+                <span class="chip">PyTorch</span>
+                <span class="chip">CUDA</span>
+                <span class="chip">ONNX</span>
+                <span class="chip">APIs</span>
+                <span class="chip">Security</span>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <div class="section-label">Experience</div>
+              <h2>Recent roles and impact.</h2>
+            </div>
+          </div>
+          <div class="experience-layout">
+            <article class="timeline-card">
+              <div class="time">Dec 2024 - Present</div>
+              <div>
+                <h3>Software Development Engineer</h3>
+                <div class="company">Amazon Web Services &middot; Seattle, WA, United States</div>
+                <p class="summary">Building secure cloud services with a focus on reliability, cryptographic workflows, event-driven systems, and operational excellence.</p>
+              </div>
+            </article>
+            <article class="timeline-card">
+              <div class="time">Nov 2023 - Dec 2024</div>
+              <div>
+                <h3>Software Developer</h3>
+                <div class="company">Comcast (Inteliroute Technologies) &middot; Mount Laurel, NJ, United States</div>
+                <p class="summary">Designed resilient backend services, optimized data pipelines, and supported dashboards and automation for high-availability systems.</p>
+              </div>
+            </article>
+            <article class="timeline-card">
+              <div class="time">Feb 2023 - Nov 2023</div>
+              <div>
+                <h3>Software Developer</h3>
+                <div class="company">Comcast (SliQ Information Technologies Inc.) &middot; Princeton, NJ, United States</div>
+                <p class="summary">Improved distributed Python and Java systems, deployments, SQL performance, monitoring, and incident response workflows.</p>
+              </div>
+            </article>
+            <article class="timeline-card">
+              <div class="time">May 2022 - Jul 2022</div>
+              <div>
+                <h3>Web App Developer</h3>
+                <div class="company">University of North Texas System &middot; Dallas, TX, United States</div>
+                <p class="summary">Built web application features across frontend, backend, and database layers while improving internal process efficiency.</p>
+              </div>
+            </article>
+            <article class="timeline-card">
+              <div class="time">Jul 2020 - Jul 2021</div>
+              <div>
+                <h3>Software Engineer</h3>
+                <div class="company">Amazon &middot; Hyderabad, TG, India</div>
+                <p class="summary">Worked on geospatial analytics, data quality, cloud automation, and logistics insights for Last Mile systems.</p>
+              </div>
+            </article>
+            <article class="timeline-card">
+              <div class="time">Apr 2018 - May 2020</div>
+              <div>
+                <h3>Software Engineer</h3>
+                <div class="company">SmartRent (SightPlan) &middot; Hyderabad, TG, India</div>
+                <p class="summary">Delivered enterprise workflow automation, SQL analytics, issue resolution, and customer-facing operational improvements.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="internships">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <div class="section-label">Internships</div>
+              <h2>Hands-on engineering foundations.</h2>
+            </div>
+          </div>
+          <div class="internship-grid">
+            <article class="internship-card">
+              <h3>Web App Developer Intern</h3>
+              <div class="internship-company">University of North Texas System &middot; Dallas, TX, USA</div>
               <ul>
-                <li>Led on‑premise migration to Azure using Virtual Machines, VNets and Infrastructure‑as‑Code (ARM/Bicep), cutting costs by 20% and boosting scalability.</li>
-                <li>Implemented CI/CD pipelines and monitoring to ensure secure, resilient cloud deployments.</li>
+                <li>Built a ReactJS front-end and C RESTful back-end backed by MySQL, automating KNTU Radio processes and boosting efficiency by 25%.</li>
+                <li>Enhanced applications with Java and PHP while debugging and optimizing MySQL for better performance.</li>
               </ul>
-            </div>
+            </article>
+            <article class="internship-card">
+              <h3>Machine Learning Intern</h3>
+              <div class="internship-company">SmartBridge &middot; Hyderabad, India</div>
+              <ul>
+                <li>Developed face recognition using Python, Pandas, NumPy and SVM classifiers, differentiating people and capturing gender counts.</li>
+                <li>Applied supervised and unsupervised learning techniques and gained hands-on statistical modeling experience.</li>
+              </ul>
+            </article>
+            <article class="internship-card">
+              <h3>Java Intern</h3>
+              <div class="internship-company">Teleparadigm Networks Ltd &middot; Hyderabad, India</div>
+              <ul>
+                <li>Designed Java/JSP UI for client rule management in SQL Server; built REST APIs on UNIX, improving rule handling efficiency.</li>
+                <li>Collaborated with stakeholders to meet business requirements and delivered client-specific reports.</li>
+              </ul>
+            </article>
           </div>
         </div>
-        <!-- Cloud Linux optimization -->
-        <div class="flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <h3>Cloud Linux Optimization</h3>
-              <p>AWS & Automation</p>
+      </section>
+
+      <section id="projects">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <div class="section-label">Projects</div>
+              <h2>Selected build stories.</h2>
             </div>
-            <div class="flip-card-back">
-              <ul>
-                <li>Optimized EC2 and EBS usage, leveraging Systems Manager and automation scripts to enhance reliability and reduce operational overhead.</li>
-                <li>Tuned Linux infrastructure for high‑availability services and integrated observability tools.</li>
-              </ul>
-            </div>
+          </div>
+          <div class="project-grid">
+            <article class="project-card">
+              <div>
+                <div class="project-top">
+                  <h3>ML Inference Runtime and Systems Optimization</h3>
+                  <span class="project-index">01</span>
+                </div>
+                <p>Built a high-performance ML inference pipeline using ONNX Runtime with C++ and Python, optimizing batching, memory management, and parallel execution to reduce latency and increase throughput. Developed profiling and benchmarking tools to improve CPU/GPU utilization for production-scale inference systems.</p>
+              </div>
+              <div class="tag-row">
+                <span class="tag">C++</span>
+                <span class="tag">Python</span>
+                <span class="tag">ONNX</span>
+                <span class="tag">Linux</span>
+              </div>
+            </article>
+            <article class="project-card">
+              <div>
+                <div class="project-top">
+                  <h3>Distributed Training and Performance Optimization</h3>
+                  <span class="project-index">02</span>
+                </div>
+                <p>Designed a distributed training pipeline using PyTorch DDP and CUDA, optimizing gradient synchronization and data loading to improve throughput and scalability. Applied PyTorch Profiler to analyze CPU/GPU utilization, reduce training latency, and improve performance efficiency.</p>
+              </div>
+              <div class="tag-row">
+                <span class="tag">PyTorch</span>
+                <span class="tag">CUDA</span>
+                <span class="tag">Python</span>
+                <span class="tag">DDP</span>
+              </div>
+            </article>
+            <article class="project-card">
+              <div>
+                <div class="project-top">
+                  <h3>Azure Migration and Optimization</h3>
+                  <span class="project-index">03</span>
+                </div>
+                <p>Led on-premise migration to Azure using virtual machines, VNets, and infrastructure-as-code, reducing costs while improving scalability.</p>
+              </div>
+              <div class="tag-row">
+                <span class="tag">Azure</span>
+                <span class="tag">IaC</span>
+                <span class="tag">CI/CD</span>
+              </div>
+            </article>
+            <article class="project-card">
+              <div>
+                <div class="project-top">
+                  <h3>Cloud Linux Optimization</h3>
+                  <span class="project-index">04</span>
+                </div>
+                <p>Optimized EC2, EBS, systems automation, and Linux infrastructure for reliable high-availability services.</p>
+              </div>
+              <div class="tag-row">
+                <span class="tag">AWS</span>
+                <span class="tag">Linux</span>
+                <span class="tag">Automation</span>
+              </div>
+            </article>
+            <article class="project-card">
+              <div>
+                <div class="project-top">
+                  <h3>GIS Web Systems</h3>
+                  <span class="project-index">05</span>
+                </div>
+                <p>Developed Web GIS systems using Spatial SQL, QGIS, GeoServer, and OGC web services for remote sensing layers.</p>
+              </div>
+              <div class="tag-row">
+                <span class="tag">GIS</span>
+                <span class="tag">QGIS</span>
+                <span class="tag">GeoServer</span>
+              </div>
+            </article>
+            <article class="project-card">
+              <div>
+                <div class="project-top">
+                  <h3>Decentralized Crowd Banking</h3>
+                  <span class="project-index">06</span>
+                </div>
+                <p>Built a peer-to-peer lending concept on Ethereum with Solidity smart contracts and web3.js for transparent transactions.</p>
+              </div>
+              <div class="tag-row">
+                <span class="tag">Solidity</span>
+                <span class="tag">Ethereum</span>
+                <span class="tag">web3.js</span>
+              </div>
+            </article>
+            <article class="project-card">
+              <div>
+                <div class="project-top">
+                  <h3>Face Recognition Pipeline</h3>
+                  <span class="project-index">07</span>
+                </div>
+                <p>Designed an image-processing workflow with OpenCV and scikit-learn, applying SVM models to real-time facial analytics.</p>
+              </div>
+              <div class="tag-row">
+                <span class="tag">Python</span>
+                <span class="tag">OpenCV</span>
+                <span class="tag">ML</span>
+              </div>
+            </article>
+            <article class="project-card">
+              <div>
+                <div class="project-top">
+                  <h3>Radio Workflow Automation</h3>
+                  <span class="project-index">08</span>
+                </div>
+                <p>Built React, C REST APIs, and MySQL tooling to automate KNTU Radio workflows and improve process efficiency.</p>
+              </div>
+              <div class="tag-row">
+                <span class="tag">React</span>
+                <span class="tag">C APIs</span>
+                <span class="tag">MySQL</span>
+              </div>
+            </article>
           </div>
         </div>
-        <!-- GIS project -->
-        <div class="flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <h3>GIS Web Systems</h3>
-              <p>ISRO • NRSC</p>
+      </section>
+
+      <section id="highlights">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <div class="section-label">Highlights</div>
+              <h2>Where the work gets interesting.</h2>
             </div>
-            <div class="flip-card-back">
-              <ul>
-                <li>Developed Web GIS using Spatial SQL, QGIS, GeoServer and OGC web services; published remote sensing layers and improved geospatial visualisations.</li>
-                <li>Collaborated with scientists at ISRO’s NRSC to deliver accurate, interactive mapping applications.</li>
-              </ul>
-            </div>
+          </div>
+          <div class="highlight-grid">
+            <article class="highlight-card">
+              <h3>Cryptography and CloudHSM</h3>
+              <p>Implemented Java JCE and Rust PKCS#11 libraries for CloudHSM-style cryptographic services, secure key workflows, and compliant system design.</p>
+            </article>
+            <article class="highlight-card">
+              <h3>Distributed Systems</h3>
+              <p>Designed reliable services with monitoring, deployment automation, operational runbooks, and performance-aware backend APIs.</p>
+            </article>
+            <article class="highlight-card">
+              <h3>Data and Analytics</h3>
+              <p>Built SQL, Python, and cloud-powered analytics systems to improve data quality, logistics coverage, and decision velocity.</p>
+            </article>
+            <article class="highlight-card">
+              <h3>Automation and Delivery</h3>
+              <p>Improved CI/CD pipelines, infrastructure routines, and internal workflows so teams could release faster with fewer manual steps.</p>
+            </article>
+            <article class="highlight-card">
+              <h3>Cluster-Level Retry Architecture</h3>
+              <p>Designed and launched cluster-level retry architecture that improved operation success rates from 54% to 96% under overloaded HSM conditions, while leading critical migrations, production readiness reviews, and customer-impacting reliability initiatives.</p>
+            </article>
+            <article class="highlight-card">
+              <h3>Auditing, Canary, and Observability</h3>
+              <p>Built proactive auditing, canary, and observability systems that caught production risks early, eliminated high-volume false positives, strengthened engineering quality through rigorous code reviews, and mentored interns to raise the bar across the organization.</p>
+            </article>
+            <article class="highlight-card">
+              <h3>Secure Cryptographic Service</h3>
+              <p>Implemented a Java, Rust, and PKI microservice exposing secure signing and encryption APIs using PKCS#11 and a Rust-based crypto engine.</p>
+            </article>
           </div>
         </div>
-        <!-- Blockchain crowd bank -->
-        <div class="flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <h3>Decentralized Crowd Banking</h3>
-              <p>Blockchain & Smart Contracts</p>
+      </section>
+
+      <section id="education">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <div class="section-label">Education</div>
+              <h2>Academic foundation.</h2>
             </div>
-            <div class="flip-card-back">
-              <ul>
-                <li>Built a peer‑to‑peer lending platform on Ethereum using Solidity smart contracts and web3.js, enabling secure digital mortgages.</li>
-                <li>Ensured transparency and data integrity with blockchain technology and decentralised authentication.</li>
-              </ul>
-            </div>
+          </div>
+          <div class="education-grid">
+            <article class="education-card">
+              <h3>Master of Science in Computer Science</h3>
+              <p>University of North Texas &middot; Denton, TX, United States</p>
+              <p>Aug 2021 - Dec 2022 &middot; GPA: 3.6/4</p>
+            </article>
+            <article class="education-card">
+              <h3>Bachelor of Technology in Computer Science</h3>
+              <p>Jawaharlal Nehru Technological University &middot; Hyderabad, TG, India</p>
+              <p>Jun 2015 - May 2019 &middot; GPA: 7.5/10</p>
+            </article>
           </div>
         </div>
-        <!-- Face recognition -->
-        <div class="flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <h3>Face Recognition Pipeline</h3>
-              <p>Python & AI</p>
+      </section>
+
+      <section id="contact">
+        <div class="wrap">
+          <div class="contact-panel">
+            <div>
+              <div class="section-label">Contact</div>
+              <h2>Let us build something reliable.</h2>
+              <p>Open to software engineering conversations across backend systems, cloud platforms, security infrastructure, and product teams that value strong execution.</p>
             </div>
-            <div class="flip-card-back">
-              <ul>
-                <li>Designed an image‑processing workflow with OpenCV and scikit‑learn; applied Support Vector Machines to classify gender and count people in crowds.</li>
-                <li>Engineered robust data ingestion and pre‑processing, enabling accurate real‑time facial analytics.</li>
-              </ul>
-            </div>
+            <a class="button primary" href="mailto:karthiksk7937@gmail.com">karthiksk7937@gmail.com</a>
           </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap footer-inner">
+        <div>&copy; <span id="year"></span> Sai Karthik Kocherlakota. Built for GitHub Pages.</div>
+        <div class="tiny-links">
+          <a href="#home">Top</a>
+          <a href="mailto:karthiksk7937@gmail.com">Email</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Experience Highlights section -->
-  <section id="highlights">
-    <div class="wrap">
-      <h2 class="title">Experience Highlights & Security</h2>
-      <div class="highlights-grid">
-        <div class="highlight-card">
-          <h3>🔐 Amazon Web Services</h3>
-          <p>Scaled multi‑region key‑management using Rust & Java (JCE/PKCS#11), boosting throughput by 25% with 99.99% uptime. Built event‑driven APIs on Lambda, API Gateway & DynamoDB to automate key lifecycles and secure generative AI workloads.</p>
-        </div>
-        <div class="highlight-card">
-          <h3>🚀 Inteliroute Technologies</h3>
-          <p>Designed fault‑tolerant back‑ends in Python & Java on AWS; optimized databases and ETL pipelines. Delivered dashboards via Power BI/Tableau and integrated CI/CD & monitoring to support high‑availability services, increasing engagement by 60%.</p>
-        </div>
-        <div class="highlight-card">
-          <h3>🔧 SliQ Information Technologies</h3>
-          <p>Tuned distributed Python/Java systems, cutting incident resolution by 35%. Automated deployments using Python, Bash & Jenkins, improving SQL performance by 15% and providing real‑time observability.</p>
-        </div>
-        <div class="highlight-card">
-          <h3>📍 Amazon Last Mile Analytics</h3>
-          <p>Built geospatial analytics with Python, SQL & AWS to enhance data quality and increase coverage by 17%, while reducing logistics costs by 22%. Automated CI/CD with CodeBuild & Step Functions, slashing latency by 40%.</p>
-        </div>
-        <div class="highlight-card">
-          <h3>🏠 SmartRent Jr. Engineer</h3>
-          <p>Delivered enterprise solutions with SQL analytics & ServiceNow automation, resolving 25+ high‑impact issues and raising customer satisfaction by 45%. Implemented Agile/Jira workflows and coached teams to accelerate delivery.</p>
-        </div>
-        <div class="highlight-card">
-          <h3>🛡️ Cryptography & CloudHSM</h3>
-          <p>Implemented Java JCE and Rust PKCS#11 libraries for CloudHSM, architecting secure cryptographic services compliant with FIPS 140‑2 L3. Provided cross‑platform encryption and key attestation to secure data and generative AI models.</p>
-        </div>
-        <div class="highlight-card">
-          <h3>🌐 Security & Distributed Systems</h3>
-          <p>Designed globally distributed encryption services with HSMs, robust CI/CD and continuous monitoring. Ensured high reliability, scalability and secure data access across microservices and AI workloads.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Gallery section removed entirely per instructions -->
-
-  <section id="contact" style="position:relative;">
-    <div class="wrap">
-      <h2 class="title">Contact</h2>
-      <p class="muted">Kick me a note anytime:</p>
-      <div class="contact-wrap">
-        <a id="contactBtn" class="btn primary" href="mailto:karthiksk7937@gmail.com">karthiksk7937@gmail.com</a>
-      </div>
-    </div>
-    <!-- Removed static Goku figure per user request -->
-  </section>
-
-  <footer>
-    <!-- Showcase core technologies with simple icons to appeal to SWE recruiters -->
-    <div class="tech-icons">
-      <span>🐍 Python</span>
-      <span>☕ Java</span>
-      <span>🦀 Rust</span>
-      <span>⚛️ React</span>
-      <span>☁️ AWS/Azure</span>
-      <span>🐳 Docker</span>
-      <span>☸️ Kubernetes</span>
-      <span>🛠️ CI/CD</span>
-      <span>🤖 AI & ML</span>
-    </div>
-    <div class="wrap">© <span id="year"></span> Sai Karthik Kocherlakota — Lets build something new!</div>
-  </footer>
+    </footer>
+  </div>
 
   <script>
-    // set current year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-    // kicker functionality removed
+    const year = document.getElementById("year");
+    year.textContent = new Date().getFullYear();
+
+    const menuToggle = document.getElementById("menuToggle");
+    const navlinks = document.getElementById("navlinks");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navlinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+    });
+
+    navlinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navlinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation");
+      });
+    });
+
+    const canvas = document.getElementById("starfield");
+    const ctx = canvas.getContext("2d", { alpha: true });
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const pointer = { x: 0.5, y: 0.5 };
+    let stars = [];
+    let meteors = [];
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+    let lastMeteor = 0;
+
+    function resetStar(star, fromTop = false) {
+      star.x = Math.random() * width;
+      star.y = fromTop ? -20 - Math.random() * 120 : Math.random() * height;
+      star.depth = 0.35 + Math.random() * 1.1;
+      star.radius = 0.35 + Math.random() * 1.65;
+      star.speed = 0.06 + Math.random() * 0.28;
+      star.drift = -0.05 + Math.random() * 0.1;
+      star.phase = Math.random() * Math.PI * 2;
+      star.tint = Math.random() > 0.78 ? "pink" : Math.random() > 0.48 ? "cyan" : "white";
+    }
+
+    function resizeScene() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const starCount = Math.min(230, Math.max(105, Math.floor((width * height) / 7600)));
+      stars = Array.from({ length: starCount }, () => {
+        const star = {};
+        resetStar(star);
+        return star;
+      });
+    }
+
+    function colorFor(star, alpha) {
+      if (star.tint === "cyan") return `rgba(120, 229, 255, ${alpha})`;
+      if (star.tint === "pink") return `rgba(255, 132, 210, ${alpha})`;
+      return `rgba(255, 255, 255, ${alpha})`;
+    }
+
+    function spawnMeteor(now) {
+      if (reduceMotion || now - lastMeteor < 4600 || Math.random() > 0.008) return;
+      lastMeteor = now;
+      meteors.push({
+        x: Math.random() * width * 0.78 + width * 0.12,
+        y: -30,
+        vx: -3.2 - Math.random() * 1.8,
+        vy: 3.4 + Math.random() * 1.8,
+        life: 0,
+        maxLife: 48 + Math.random() * 26
+      });
+    }
+
+    function draw(now = 0) {
+      ctx.clearRect(0, 0, width, height);
+      ctx.save();
+
+      for (const star of stars) {
+        if (!reduceMotion) {
+          star.y += star.speed * star.depth;
+          star.x += star.drift * star.depth;
+          if (star.y > height + 12 || star.x < -12 || star.x > width + 12) resetStar(star, true);
+        }
+
+        const parallaxX = (pointer.x - 0.5) * 22 * star.depth;
+        const parallaxY = (pointer.y - 0.5) * 16 * star.depth;
+        const shimmer = 0.52 + Math.sin(now * 0.0017 + star.phase) * 0.24;
+        const alpha = Math.max(0.18, Math.min(0.95, shimmer * star.depth));
+        const radius = star.radius * star.depth;
+        const x = star.x + parallaxX;
+        const y = star.y + parallaxY;
+
+        ctx.beginPath();
+        ctx.fillStyle = colorFor(star, alpha);
+        ctx.shadowColor = colorFor(star, Math.min(alpha + 0.16, 1));
+        ctx.shadowBlur = star.depth > 0.95 ? 8 : 3;
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      spawnMeteor(now);
+      meteors = meteors.filter((meteor) => meteor.life < meteor.maxLife && meteor.y < height + 100);
+      for (const meteor of meteors) {
+        meteor.x += meteor.vx;
+        meteor.y += meteor.vy;
+        meteor.life += 1;
+        const alpha = 1 - meteor.life / meteor.maxLife;
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(145, 232, 255, ${alpha * 0.55})`;
+        ctx.lineWidth = 1.4;
+        ctx.moveTo(meteor.x, meteor.y);
+        ctx.lineTo(meteor.x - meteor.vx * 8, meteor.y - meteor.vy * 8);
+        ctx.stroke();
+      }
+
+      ctx.restore();
+      ctx.shadowBlur = 0;
+      if (!reduceMotion) requestAnimationFrame(draw);
+    }
+
+    window.addEventListener("resize", resizeScene, { passive: true });
+    window.addEventListener("pointermove", (event) => {
+      pointer.x = event.clientX / Math.max(window.innerWidth, 1);
+      pointer.y = event.clientY / Math.max(window.innerHeight, 1);
+    }, { passive: true });
+
+    resizeScene();
+    draw();
   </script>
 </body>
 </html>
